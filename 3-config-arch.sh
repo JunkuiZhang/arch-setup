@@ -64,6 +64,9 @@ replace-with = 'sjtu'
 [source.sjtu]
 registry = \"https://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index/\"" > ~/.cargo/config
 
+echo "-> Installing chrome..."
+paru -S google-chrome
+
 echo "-> Installing v2rayA..."
 paru -S v2ray v2raya-bin
 sudo systemctl enable --now v2raya
