@@ -5,12 +5,19 @@ echo "=== Configure Arch Linux ==="
 echo "============================"
 
 echo "\n"
-echo "Please make sure you have configured Opencore!"
+echo "Please make sure you have login by Opencore!"
 echo "\n"
 
 sleep 5
 
 cd ~
+
+echo "=== Setup Opencore ==="
+echo "Enter the DISK name, should be /dev/nvme0nX (with X as a number) if you're using NVMe, type nvme0n1 something..."
+lsblk
+echo "Input:"
+read disk_name
+sudo efibootmgr -c -L "Linux" -l "\EFI\grub_uefi\grubx64.efi" -d "/dev/$disk_name" -p 1
 
 echo "=== Setup Softwares ==="
 
@@ -44,13 +51,18 @@ sudo sed -i "/BottomUp/s/^#//g" /etc/paru.conf
 
 echo "-> Installing rust..."
 paru -S rustup
-cp bash_profile.bk ~/.bash_profile
+sed -i '/bashrc/i export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup\nexport RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static\n' ~/.bash_profile
 source ~/.bash_profile
 rustup default stable
 
 echo "-> Configuring cargo..."
 mkdir -p ~/.cargo
-cp cargo_config ~/.cargo/config
+echo -e "[source.crates-io]
+registry = \"https://github.com/rust-lang/crates.io-index\"
+replace-with = 'sjtu'
+
+[source.sjtu]
+registry = \"https://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index/\"" > ~/.cargo/config
 
 echo "-> Installing v2rayA..."
 paru -S v2ray v2raya-bin
@@ -71,7 +83,15 @@ echo "Input anything to continue."
 read void_input
 
 echo "-> Configuring input enviroment variable..."
-sudo cp input_envir_file /etc/environment
+sudo cp /etc/environment temp_file
+echo -e "GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+INPUT_METHOD=fcitx
+SDL_IM_MODULE=fcitx
+GLFW_IM_MODULE=ibus" >> temp_file
+sudo cp temp_file /etc/environment
+rm temp_file
 
 echo "-> Configure vscode..."
 paru -S visual-studio-code-bin
