@@ -25,6 +25,14 @@ echo "-> Installing network & build tools..."
 pacman -S linux-headers base-devel networkmanager
 systemctl enable NetworkManager
 
+echo "-> Installing LVM2..."
+pacman -S lvm2
+echo "-> Setting up lvm2..."
+sed -i "/^HOOKS=(/ s/^\(.*\)\(filesystems\)/\1lvm2 \2/" /etc/mkinitcpio.conf
+echo "You are installing linux or lts ? input linux or linux-lts"
+read linux_version
+mkinitcpio -p $linux_version
+
 echo "-> Setting up user..."
 echo "Enter the password for root user:"
 passwd
