@@ -49,17 +49,6 @@ echo "127.0.0.1   localhost" > /etc/hosts
 echo "127.0.1.1   $host_name" >> /etc/hosts
 
 echo "=== Setup Some Drivers ==="
-echo "-> Installing cpu ucode..."
-echo "Enter your cpu type: amd or intel?"
-read cpu_type
-
-if [[ ($cpu_type == "amd" || $cpu_type == "AMD") ]]; then
-echo "AMD detected!"
-pacman -S amd-ucode
-else
-echo "Intel detected!"
-pacman -S intel-ucode
-fi
 
 echo "-> Installing gpu driver..."
 pacman -S mesa

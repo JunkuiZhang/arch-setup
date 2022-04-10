@@ -43,7 +43,7 @@ sudo sed -i "/Color/s/^#//g" /etc/pacman.conf
 sudo sed -i "/BottomUp/s/^#//g" /etc/paru.conf
 
 echo "-> Installing rust..."
-pacman -S rustup
+paru -S rustup
 cp bash_profile.bk ~/.bash_profile
 source ~/.bash_profile
 rustup default stable
@@ -53,8 +53,7 @@ mkdir -p ~/.cargo
 cp cargo_config ~/.cargo/config
 
 echo "-> Installing v2rayA..."
-paru v2ray
-paru v2ray-bin
+paru -S v2ray v2raya-bin
 sudo systemctl enable --now v2raya
 
 echo "Please configure v2rayA..."
@@ -62,11 +61,10 @@ echo "Input anything to continue after finish configuration."
 read void_input
 
 echo "-> Installing neofetch..."
-paru neofetch
+paru -S neofetch
 
 echo "-> Chinese input..."
-paru fcitx5-im
-paru fcitx5 chinese addon
+paru -S fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-chinese-addons
 
 echo "Please configure input method..."
 echo "Input anything to continue."
@@ -76,10 +74,8 @@ echo "-> Configuring input enviroment variable..."
 sudo cp input_envir_file /etc/environment
 
 echo "-> Configure vscode..."
-paru visual studio code bin
-paru libdbusmenu-glib
-paru gnome keyring
-paru clang
+paru -S visual-studio-code-bin
+paru -S libdbusmenu-glib gnome-keyring clang
 
 echo "Please setup vscode..."
 echo "Input anything to continue..."
@@ -89,35 +85,37 @@ read void_input
 
 echo "=== Configuring Drivers ==="
 echo "-> Vulkan support..."
-paru mesa vulkan
 echo "Using intel? y or n"
 read intel_is_used
 
-if [[ $intel_is_used == "y" ]];then
-sudo sysctl dev.i915.perf_stream_paranoid=0
-echo "done."
+if [[ $intel_is_used == "y" ]]; then
+	paru -S vulkan-intel xf86-video-intel
+	sudo sysctl dev.i915.perf_stream_paranoid=0
+	echo "Intel done."
 else
-echo "AMD dont know"
+	paru -S vulkan-radeon xf86-video-amdgpu
+	echo "AMD done."
 fi
 
 echo "-> NTFS support..."
-paru ntfs-3g
+paru -S ntfs-3g
 
 echo "=> Using touchpad? y or n"
 read touchpad_enable
-if [[ $touchpad_enable == "y" ]];then
-echo "-> Touchpad support..."
-sudo pacman -S touchegg
-paru touche
-sudo systemctl enable touchegg
-echo "Done."
+
+if [[ $touchpad_enable == "y" ]]; then
+	echo "-> Touchpad support..."
+	paru -S touchegg touche
+	sudo systemctl enable touchegg
+	mkdir -p ~/.config/touchegg
+	cp touchpad_config ~/.config/touchegg/touchegg.conf
+	echo "Done."
 else
-echo "Skip..."
+	echo "Skip..."
 fi
 
 echo "=== System Theme ==="
-paru kvantum
-paru latte dock
+paru -S kvantum latte-dock
 
 echo "Please configure latte dock..."
 echo "Input anything to continue..."

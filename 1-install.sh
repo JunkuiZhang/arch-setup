@@ -43,6 +43,15 @@ sed -i "s/^[ \t]*//" /etc/sudoers
 echo "=== Install Grub ==="
 
 echo "-> Installing tools..."
+echo "Enter yout cpu type: amd or intel ?"
+read cpu_type
+if [[ ($cpu_type == "amd" || $cpu_type == "AMD") ]]; then
+	echo "AMD detected!"
+	pacman -S amd-ucode
+else
+	echo "Intel detected!"
+	pacman -S intel-ucode
+fi
 pacman -S grub efibootmgr mtools
 echo "-> Configuring grub..."
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub_uefi --recheck
