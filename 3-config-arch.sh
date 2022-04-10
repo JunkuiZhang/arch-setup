@@ -76,8 +76,11 @@ sudo cp input_envir_file /etc/environment
 echo "-> Configure vscode..."
 paru -S visual-studio-code-bin
 paru -S libdbusmenu-glib gnome-keyring clang
+git clone https://github.com/JunkuiZhang/LightGreen.git
+mkdir -p ~/.vscode/extensions
+mv LightGreen ~/.vscode/extensions/
 
-echo "Please setup vscode..."
+echo "Please setup Clangd for vscode..."
 echo "Input anything to continue..."
 echo "Path to clangd:"
 whereis clangd
