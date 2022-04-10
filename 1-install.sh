@@ -54,7 +54,7 @@ else
 fi
 pacman -S grub efibootmgr mtools
 echo "-> Configuring grub..."
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub_uefi --recheck
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch --recheck
 sed -i "/GRUB_TIMEOUT/s/^/#/g" /etc/default/grub
 sed -i "/GRUB_TIMEOUT_STYLE/s/^/#/g" /etc/default/grub
 echo "GRUB_TIMEOUT=0" >> /etc/default/grub
