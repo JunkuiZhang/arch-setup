@@ -124,7 +124,7 @@ else
 fi
 
 echo "-> NTFS support..."
-paru -S ntfs-3g
+paru -S ntfsprogs-ntfs3
 
 echo "=> Using touchpad? y or n"
 read touchpad_enable
