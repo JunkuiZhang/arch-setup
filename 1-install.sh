@@ -15,8 +15,6 @@ echo "-> Configuring locale..."
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 sed -i "/#en_US.UTF-8/s/^#//g" /etc/locale.gen
 sed -i "/#zh_CN.UTF-8/s/^#//g" /etc/locale.gen
-# echo "en_US.UTF-8 UTF-8  " >> /etc/locale.gen
-# echo "zh_CN.UTF-8 UTF-8  " >> /etc/locale.gen
 
 echo "-> Generating locale..."
 locale-gen
@@ -73,4 +71,3 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "================================"
 echo "Finished, please exit and reboot."
-
