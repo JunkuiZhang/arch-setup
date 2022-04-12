@@ -61,6 +61,7 @@ if [[ ($gpu_type == "amd" || $gpu_type == "AMD") ]]; then
 else
 	echo "Intel gpu is used."
 	pacman -S xf86-video-intel vulkan-intel intel-media-driver
+	sysctl dev.i915.perf_stream_paranoid=0
 fi
 
 echo "-> Installing sound driver..."
