@@ -53,6 +53,16 @@ echo "=== Setup Some Drivers ==="
 echo "-> Installing gpu driver..."
 pacman -S mesa
 
+echo "Enter the gpu you use: amd or intel?"
+read gpu_type
+if [[ ($gpu_type == "amd" || $gpu_type == "AMD") ]]; then
+	echo "AMD gpu is used."
+	pacman -S xf86-video-amdgpu vulkan-radeon libva-mesa-driver mesa-vdpau
+else
+	echo "Intel gpu is used."
+	pacman -S xf86-video-intel vulkan-intel intel-media-driver
+fi
+
 echo "-> Installing sound driver..."
 pacman -S alsa-utils pulseaudio pulseaudio-bluetooth cups
 

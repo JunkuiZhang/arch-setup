@@ -67,6 +67,10 @@ registry = \"https://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index/\"" > ~/.carg
 echo "-> Installing chrome..."
 paru -S google-chrome
 
+echo "-> Configuring chrome..."
+mkdir -p ~/.config
+echo -e "--disable-features=UseChromeOSDirectVideoDecoder --enable-features=VaapiVideoDecoder --ignore-gpu-blocklist --use-gl=desktop\n" > ~/.config/chrome-flags.conf
+
 echo "-> Installing v2rayA..."
 paru -S v2ray v2raya-bin
 sudo systemctl enable --now v2raya
@@ -110,18 +114,6 @@ whereis clangd
 read void_input
 
 echo "=== Configuring Drivers ==="
-echo "-> Vulkan support..."
-echo "Using intel? y or n"
-read intel_is_used
-
-if [[ $intel_is_used == "y" ]]; then
-	paru -S vulkan-intel xf86-video-intel
-	sudo sysctl dev.i915.perf_stream_paranoid=0
-	echo "Intel done."
-else
-	paru -S vulkan-radeon xf86-video-amdgpu
-	echo "AMD done."
-fi
 
 echo "-> NTFS support..."
 paru -S ntfsprogs-ntfs3
