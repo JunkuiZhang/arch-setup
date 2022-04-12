@@ -13,4 +13,5 @@ echo "=== TESTING ==="
 # INPUT_METHOD=fcitx
 # SDL_IM_MODULE=fcitx
 # GLFW_IM_MODULE=ibus" >> temp_file
-sed -i "/^HOOKS=(/ s/^\(.*\)\(filesystems\)/\1lvm2 \2/" temp_file
+# sed -i "/^HOOKS=(/ s/^\(.*\)\(filesystems\)/\1lvm2 \2/" temp_file
+echo -e "--disable-features=UseChromeOSDirectVideoDecoder --enable-features=VaapiVideoDecoder --ignore-gpu-blocklist --use-gl=desktop\n" > temp_file
