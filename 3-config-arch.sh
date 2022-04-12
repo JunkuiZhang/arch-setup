@@ -17,7 +17,7 @@ echo "Enter the DISK name, should be /dev/nvme0nX (with X as a number) if you're
 lsblk
 echo "Input:"
 read disk_name
-sudo efibootmgr -c -L "Linux" -l "\EFI\grub_uefi\grubx64.efi" -d "/dev/$disk_name" -p 1
+sudo efibootmgr -c -L "Linux" -l "\EFI\Arch\grubx64.efi" -d "/dev/$disk_name" -p 1
 
 echo "=== Setup Softwares ==="
 
@@ -142,3 +142,7 @@ read void_input
 echo "=== Configure Terminal ==="
 echo "Please follow blog to configure."
 
+echo "\n"
+echo "========================"
+echo "=== Finished Install ==="
+echo "========================"
