@@ -68,8 +68,18 @@ pacman -S bluez bluez-utils
 systemctl enable bluetooth
 
 echo "=== Setup Desktop Enviroment ==="
-echo "-> Installing xorg..."
-pacman -S xorg-server
+echo "-> Install Xorg or Wayland?"
+
+echo "Type xorg or wayland..."
+read xorg_enable
+if [[ ($xorg_enable == "xorg" || $xorg_enable == "Xorg") ]]; then
+	echo "-> Installing xorg..."
+	pacman -S xorg-server
+else
+	echo "-> Installing wayland..."
+	pacman -S wayland wayland-protocols wayland-utils
+fi
+
 echo "-> Enabling freetype rendering..."
 sed -i "/REETYPE_PROPERTIES/s/^#//g" /etc/profile.d/freetype2.sh
 sed -i "s/^[ \t]*//" /etc/profile.d/freetype2.sh
