@@ -1,10 +1,6 @@
 #!/bin/bash
 
 echo "\n"
-echo "Please make sure you have ROOT access & connected to the internet!"
-sleep 5
-
-echo "\n"
 echo "=================================="
 echo "=== Post Install Configuration ==="
 echo "=================================="
