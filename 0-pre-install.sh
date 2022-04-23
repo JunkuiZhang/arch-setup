@@ -19,11 +19,11 @@ echo "-> Completed..."
 echo "=== Mount the disk  ==="
 
 lsblk
-echo "Enter your root partition name:"
+echo "Enter your root partition name: (i.e. nvme0n1p2)"
 read root_partition
 
 lsblk
-echo "Enter your EFI partition name:"
+echo "Enter your EFI partition name: (i.e. nvme0n1p1)"
 read efi_partition
 
 echo "-> Mounting..."

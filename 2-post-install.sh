@@ -1,5 +1,7 @@
 #!/bin/bash
 
+config_file="config"
+
 echo "\n"
 echo "=================================="
 echo "=== Post Install Configuration ==="
@@ -77,9 +79,11 @@ if [[ ($wayland_enable == "wayland" || $wayland_enable == "w") ]]; then
 	echo "-> Installing wayland..."
 	pacman -S wayland wayland-prorocols wayland-utils
 	wayland_pkg="plasma-wayland-session"
+	echo "wayland=\"true\"" > $config_file
 else
 	echo "-> Installing xorg..."
 	pacman -S xorg-server
+	echo "wayland=\"false\"" > $config_file
 fi
 
 echo "-> Enabling freetype rendering..."

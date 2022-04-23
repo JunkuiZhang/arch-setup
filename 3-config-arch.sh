@@ -1,5 +1,8 @@
 #!/bin/bash
 
+config_file="config"
+source $config_file
+
 echo "============================"
 echo "=== Configure Arch Linux ==="
 echo "============================"
@@ -9,8 +12,6 @@ echo "Please make sure you have login by Opencore!"
 echo "\n"
 
 sleep 5
-
-cd ~
 
 echo "=== Setup Opencore ==="
 echo "Enter the DISK name, should be /dev/nvme0nX (with X as a number) if you're using NVMe, type nvme0n1 something..."
@@ -121,7 +122,7 @@ paru -S ntfsprogs-ntfs3
 echo "=> Using touchpad? y or n"
 read touchpad_enable
 
-if [[ $touchpad_enable == "y" ]]; then
+if [[ ($touchpad_enable == "y" && $wayland == "false") ]]; then
 	echo "-> Touchpad support..."
 	paru -S touchegg touche
 	sudo systemctl enable touchegg
