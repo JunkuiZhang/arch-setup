@@ -70,14 +70,16 @@ systemctl enable bluetooth
 echo "=== Setup Desktop Enviroment ==="
 echo "-> Install Xorg or Wayland?"
 
+wayland_pkg = ""
 echo "Type xorg or wayland..."
-read xorg_enable
-if [[ ($xorg_enable == "xorg" || $xorg_enable == "Xorg") ]]; then
+read wayland_enable
+if [[ ($wayland_enable == "wayland" || $wayland_enable == "w") ]]; then
+	echo "-> Installing wayland..."
+	pacman -S wayland wayland-prorocols wayland-utils
+	wayland_pkg = "plasma-wayland-session"
+else
 	echo "-> Installing xorg..."
 	pacman -S xorg-server
-else
-	echo "-> Installing wayland..."
-	pacman -S wayland wayland-protocols wayland-utils
 fi
 
 echo "-> Enabling freetype rendering..."
@@ -85,7 +87,8 @@ sed -i "/REETYPE_PROPERTIES/s/^#//g" /etc/profile.d/freetype2.sh
 sed -i "s/^[ \t]*//" /etc/profile.d/freetype2.sh
 
 echo "-> Installing KDE..."
-pacman -S plasma-meta plasma-desktop sddm kscreen plasma-pa ffmpegthumbs dolphin konsole ark vlc kate
+pacman -S plasma-meta plasma-desktop sddm $wayland_pkg kscreen plasma-pa ffmpegthumbs dolphin konsole ark vlc kate
+
 systemctl enable sddm
 
 echo "================================="
