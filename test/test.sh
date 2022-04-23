@@ -14,4 +14,19 @@ echo "=== TESTING ==="
 # SDL_IM_MODULE=fcitx
 # GLFW_IM_MODULE=ibus" >> temp_file
 # sed -i "/^HOOKS=(/ s/^\(.*\)\(filesystems\)/\1lvm2 \2/" temp_file
-echo -e "--disable-features=UseChromeOSDirectVideoDecoder --enable-features=VaapiVideoDecoder --ignore-gpu-blocklist --use-gl=desktop\n" > temp_file
+# echo -e "--disable-features=UseChromeOSDirectVideoDecoder --enable-features=VaapiVideoDecoder --ignore-gpu-blocklist --use-gl=desktop\n" > temp_file
+
+wayland_pkg=""
+echo "wayland?"
+read wayland_enable
+
+if [[ ($wayland_enable == "wayland" || $wayland_enable == "w") ]]; then
+	echo "Wayland enable!"
+	wayland_pkg="plasma-wayland-session"
+else
+	echo "Xorg enable!"
+fi
+
+echo "Test:"
+paru $wayland_pkg
+
