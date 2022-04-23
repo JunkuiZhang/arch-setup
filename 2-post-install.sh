@@ -18,7 +18,7 @@ echo "-> Installing english fonts..."
 pacman -S ttf-dejavu ttf-font-awesome otf-font-awesome ttf-lato ttf-liberation ttf-linux-libertine ttf-opensans ttf-roboto ttf-hack
 
 echo "-> Installing chinese fonts..."
-pacman -S noto-fonts noto-fonts-extra noto-fonts-emoji adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts wqy-microhei
+pacman -S noto-fonts noto-fonts-extra noto-fonts-emoji adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts wqy-microhei adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts
 
 echo "=== Configuring Paging ==="
 echo "Enter the size you want in MB:"
