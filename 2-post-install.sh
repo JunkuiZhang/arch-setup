@@ -70,13 +70,13 @@ systemctl enable bluetooth
 echo "=== Setup Desktop Enviroment ==="
 echo "-> Install Xorg or Wayland?"
 
-wayland_pkg = ""
+wayland_pkg=""
 echo "Type xorg or wayland..."
 read wayland_enable
 if [[ ($wayland_enable == "wayland" || $wayland_enable == "w") ]]; then
 	echo "-> Installing wayland..."
 	pacman -S wayland wayland-prorocols wayland-utils
-	wayland_pkg = "plasma-wayland-session"
+	wayland_pkg="plasma-wayland-session"
 else
 	echo "-> Installing xorg..."
 	pacman -S xorg-server
