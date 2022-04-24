@@ -16,6 +16,8 @@ echo "\n"
 echo "=== Configuring System Fonts ==="
 echo "-> Installing english fonts..."
 pacman -S ttf-dejavu ttf-font-awesome otf-font-awesome ttf-lato ttf-liberation ttf-linux-libertine ttf-opensans ttf-roboto ttf-hack
+mkdir -p /usr/local/share/fonts
+cp -r ./fonts/. /usr/local/share/fonts/
 
 echo "-> Installing chinese fonts..."
 pacman -S noto-fonts noto-fonts-extra noto-fonts-emoji adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts wqy-microhei adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts
@@ -91,7 +93,7 @@ sed -i "/REETYPE_PROPERTIES/s/^#//g" /etc/profile.d/freetype2.sh
 sed -i "s/^[ \t]*//" /etc/profile.d/freetype2.sh
 
 echo "-> Installing KDE..."
-pacman -S plasma-meta plasma-desktop sddm $wayland_pkg kscreen plasma-pa ffmpegthumbs dolphin konsole ark vlc kate
+pacman -S plasma-meta plasma-desktop sddm $wayland_pkg kscreen plasma-pa ffmpegthumbs dolphin wezterm ark vlc kate
 
 systemctl enable sddm
 

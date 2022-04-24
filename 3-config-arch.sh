@@ -22,6 +22,10 @@ sudo efibootmgr -c -L "Linux" -l "\EFI\Arch\grubx64.efi" -d "/dev/$disk_name" -p
 
 echo "=== Setup Softwares ==="
 
+echo "-> Configurig terminal..."
+mkdir -p ~/.config/wezterm
+cp -rf ./terminal/. ~/.config/wezterm
+
 echo "-> Installing git..."
 sudo pacman -S git
 echo "Enter your git email address:"
@@ -139,9 +143,6 @@ paru -S kvantum latte-dock
 echo "Please configure latte dock..."
 echo "Input anything to continue..."
 read void_input
-
-echo "=== Configure Terminal ==="
-echo "Please follow blog to configure."
 
 echo "\n"
 echo "========================"

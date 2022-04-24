@@ -16,17 +16,6 @@ echo "=== TESTING ==="
 # sed -i "/^HOOKS=(/ s/^\(.*\)\(filesystems\)/\1lvm2 \2/" temp_file
 # echo -e "--disable-features=UseChromeOSDirectVideoDecoder --enable-features=VaapiVideoDecoder --ignore-gpu-blocklist --use-gl=desktop\n" > temp_file
 
-config_file="variable"
-wayland_pkg=""
-echo "wayland?"
-read wayland_enable
-
-if [[ ($wayland_enable == "wayland" || $wayland_enable == "w") ]]; then
-	echo "Wayland enable!"
-	wayland_pkg="plasma-wayland-session"
-	echo "wayland_enable=\"true\"" > $config_file
-else
-	echo "Xorg enable!"
-	echo "wayland_enable=\"false\"" > $config_file
-fi
+mkdir -p temp_font
+cp -r ../fonts/. ./temp_font/
 
