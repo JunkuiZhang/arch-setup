@@ -20,7 +20,10 @@ mkdir -p /usr/local/share/fonts
 cp -r ./fonts/. /usr/local/share/fonts/
 
 echo "-> Installing chinese fonts..."
-pacman -S noto-fonts noto-fonts-extra noto-fonts-emoji adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts wqy-microhei adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts
+pacman -S noto-fonts noto-fonts-extra noto-fonts-emoji adobe-source-han-sans-cn-fonts wqy-microhei
+pacman -S adobe-source-han-sans-hk-fonts
+pacman -S adobe-source-han-sans-jp-fonts
+pacman -S adobe-source-han-sans-kr-fonts
 
 echo "=== Configuring Paging ==="
 echo "Enter the size you want in MB:"
