@@ -1,1 +1,1 @@
-https://bigairport.icu/api/v1/client/subscribe\?token\=91aa286393af22c1a755ff5e4d0edb61
+https://bigairport.icu/api/v1/client/subscribe?token=91aa286393af22c1a755ff5e4d0edb61
