@@ -138,7 +138,11 @@ else
 fi
 
 echo "=== System Theme ==="
+
 paru -S kvantum latte-dock
+
+echo "-> Copying wallpapers into Pictures folder..."
+cp -r ./wallpapers/. ~/Pictures
 
 echo "Please configure latte dock..."
 echo "Input anything to continue..."
