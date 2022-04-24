@@ -16,6 +16,7 @@ echo "=== TESTING ==="
 # sed -i "/^HOOKS=(/ s/^\(.*\)\(filesystems\)/\1lvm2 \2/" temp_file
 # echo -e "--disable-features=UseChromeOSDirectVideoDecoder --enable-features=VaapiVideoDecoder --ignore-gpu-blocklist --use-gl=desktop\n" > temp_file
 
-mkdir -p temp_font
-cp -r ../fonts/. ./temp_font/
+mkdir -p temp_dir
+# git clone https://github.com/JunkuiZhang/LightGreen.git
+mv ./LightGreen ./temp_dir
 
