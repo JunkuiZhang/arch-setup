@@ -1,9 +1,9 @@
 local wezterm = require 'wezterm';
 
 return {
-  color_scheme = "Catppuccin",
+  color_scheme = "Catppuccin Frappe",
   font = wezterm.font_with_fallback({
-	"Ubuntu Mono Ligaturized",
+	"Maple Mono SC NF",
 	"Source Han Sans CN"
   }),
   font_size = 13,

@@ -3,31 +3,19 @@
 config_file="config"
 source $config_file
 
-echo "============================"
-echo "=== Configure Arch Linux ==="
-echo "============================"
+echo "============================================"
+echo "=============== Configure Arch Linux ==============="
+echo "============================================"
 
-echo "\n"
-echo "Please make sure you have login by Opencore!"
-echo "\n"
-
-sleep 5
-
-echo "=== Setup Opencore ==="
-echo "Enter the DISK name, should be /dev/nvme0nX (with X as a number) if you're using NVMe, type nvme0n1 something..."
-lsblk
-echo "Input:"
-read disk_name
-sudo efibootmgr -c -L "Linux" -l "\EFI\Arch\grubx64.efi" -d "/dev/$disk_name" -p 1
-
-echo "=== Setup Softwares ==="
+echo ""
+echo "=============== Setup Softwares =================="
 
 echo "-> Configurig terminal..."
 mkdir -p ~/.config/wezterm
-cp -rf ./terminal/. ~/.config/wezterm
+cp ./wezterm ~/.config/wezterm/
 
 echo "-> Installing git..."
-sudo pacman -S git
+sudo pacman -S git openssh
 echo "Enter your git email address:"
 read git_email
 git config --global user.email "$git_email"
@@ -44,11 +32,12 @@ echo "Saving your ssh pub key to desktop..."
 cat ~/.ssh/id_ed25519.pub > ~/Desktop/pub_key.txt
 
 echo "-> Installing paru..."
+cd ~
 git clone https://aur.archlinux.org/paru-bin.git
-cd paru
+cd paru-bin
 makepkg -si
 cd ~
-rm -rf ~/paru
+rm -rf paru-bin
 
 echo "-> Configuring paru..."
 sudo sed -i "/Color/s/^#//g" /etc/pacman.conf
@@ -81,6 +70,7 @@ paru -S v2ray v2raya-bin
 sudo systemctl enable --now v2raya
 
 echo "Please configure v2rayA..."
+echo "http://localhost:2017"
 echo "Input anything to continue after finish configuration."
 read void_input
 
@@ -94,16 +84,16 @@ echo "Please configure input method..."
 echo "Input anything to continue."
 read void_input
 
-echo "-> Configuring input enviroment variable..."
-sudo cp /etc/environment temp_file
-echo -e "GTK_IM_MODULE=fcitx
-QT_IM_MODULE=fcitx
-XMODIFIERS=@im=fcitx
-INPUT_METHOD=fcitx
-SDL_IM_MODULE=fcitx
-GLFW_IM_MODULE=ibus" >> temp_file
-sudo cp temp_file /etc/environment
-rm temp_file
+# echo "-> Configuring input enviroment variable..."
+# sudo cp /etc/environment temp_file
+# sudo echo -e "GTK_IM_MODULE=fcitx
+# QT_IM_MODULE=fcitx
+# XMODIFIERS=@im=fcitx
+# INPUT_METHOD=fcitx
+# SDL_IM_MODULE=fcitx
+# GLFW_IM_MODULE=ibus" >> temp_file
+# sudo cp temp_file /etc/environment
+# sudo rm temp_file
 
 echo "-> Configure vscode..."
 paru -S visual-studio-code-bin
@@ -118,7 +108,7 @@ echo "Path to clangd:"
 whereis clangd
 read void_input
 
-echo "=== Configuring Drivers ==="
+echo "=============== Configuring Drivers ==============="
 
 echo "-> NTFS support..."
 paru -S ntfsprogs-ntfs3
@@ -137,14 +127,11 @@ else
 	echo "Skip..."
 fi
 
-echo "=== System Theme ==="
-
-paru -S kvantum latte-dock
+echo "=============== System Theme ==============="
 
 echo "-> Copying wallpapers into Pictures folder..."
 cp -r ./wallpapers/. ~/Pictures
 
-echo "Please configure latte dock..."
 echo "Input anything to continue..."
 read void_input
 

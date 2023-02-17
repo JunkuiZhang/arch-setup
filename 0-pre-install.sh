@@ -1,22 +1,22 @@
 #!/bin/bash
 
-echo "\n"
-echo "================================="
-echo "=== Stating to install system ==="
-echo "================================="
-echo "\n"
+echo ""
+echo "=================================================="
+echo "================= Stating to install system ================="
+echo "=================================================="
+echo ""
 echo "Make sure you have connect to the internet and disk partition is completed!"
 echo "No need to monut the disks."
 
 sleep 5
 
-echo "=== Configuring pacman mirrorlist ==="
+echo "=============== Configuring pacman mirrorlist ==============="
 
 reflector --country China --age 24 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
 
 echo "-> Completed..."
 
-echo "=== Mount the disk  ==="
+echo "================== Mount the disk  =================="
 
 lsblk
 echo "Enter your root partition name: (i.e. nvme0n1p2)"

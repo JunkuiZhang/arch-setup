@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo "\n"
-echo "=========================="
-echo "=== Install Arch Linux ==="
-echo "=========================="
-echo "\n"
+echo ""
+echo "================================================"
+echo "================== Install Arch Linux =================="
+echo "================================================"
+echo ""
 
 
-echo "=== Install Arch Linux ==="
+echo "=============== Install Arch Linux ==============="
 echo "-> Installing tools..."
 pacman -S bash-completion vim
 
@@ -44,9 +44,9 @@ echo "-> Configuring sudo for wheel group..."
 sed -i "/wheel\sALL=(ALL:ALL)\sALL/s/^#//g" /etc/sudoers
 sed -i "s/^[ \t]*//" /etc/sudoers
 
-echo "=== Install Grub ==="
+echo "=============== Install Grub ==============="
 
-echo "-> Installing tools..."
+echo "-> Installing boot-manager..."
 echo "Enter yout cpu type: amd or intel ?"
 read cpu_type
 if [[ ($cpu_type == "amd" || $cpu_type == "AMD") ]]; then
@@ -56,18 +56,10 @@ else
 	echo "Intel detected!"
 	pacman -S intel-ucode
 fi
-pacman -S grub efibootmgr mtools
-echo "-> Configuring grub..."
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch --recheck
-sed -i "/GRUB_TIMEOUT/s/^/#/g" /etc/default/grub
-sed -i "/GRUB_TIMEOUT_STYLE/s/^/#/g" /etc/default/grub
-echo "GRUB_TIMEOUT=0" >> /etc/default/grub
-echo "GRUB_TIMEOUT_STYLE=hidden" >> /etc/default/grub
-echo "GRUB_HIDDEN_TIMEOUT=0" >> /etc/default/grub
-echo "GRUB_HIDDEN_TIMEOUT_QUIET=true" >> /etc/default/grub
 
-echo "-> Generating grub config file..."
-grub-mkconfig -o /boot/grub/grub.cfg
+pacman -S refind
+echo "-> Configuring boot-manager..."
+refind-install
 
 echo "================================"
 echo "Finished, please exit and reboot."

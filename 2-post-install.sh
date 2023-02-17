@@ -2,18 +2,18 @@
 
 config_file="config"
 
-echo "\n"
-echo "=================================="
-echo "=== Post Install Configuration ==="
-echo "=================================="
-echo "\n"
+echo ""
+echo "==============================================="
+echo "=============== Post Install Configuration ==============="
+echo "==============================================="
+echo ""
 
 echo "Please make sure you have ROOT access & connected to net!"
 
 sleep 5
 
-echo "\n"
-echo "=== Configuring System Fonts ==="
+echo ""
+echo "=============== Configuring System Fonts ==============="
 echo "-> Installing english fonts..."
 pacman -S ttf-dejavu ttf-font-awesome otf-font-awesome ttf-lato ttf-liberation ttf-linux-libertine ttf-opensans ttf-roboto ttf-hack
 mkdir -p /usr/local/share/fonts
@@ -25,7 +25,7 @@ pacman -S adobe-source-han-sans-hk-fonts
 pacman -S adobe-source-han-sans-jp-fonts
 pacman -S adobe-source-han-sans-kr-fonts
 
-echo "=== Configuring Paging ==="
+echo "=============== Configuring Paging ==============="
 echo "Enter the size you want in MB:"
 read page_size
 echo "-> Initializing page file..."
@@ -37,11 +37,11 @@ echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
 echo "-> Turning swap on..."
 swapon -a
 
-echo "=== Setup Timezone ==="
+echo "=============== Setup Timezone ==============="
 timedatectl set-timezone Asia/Shanghai
 systemctl enable systemd-timesyncd
 
-echo "=== Setup Host ==="
+echo "=============== Setup Host ==============="
 
 echo "Enter the hostname you want:"
 read host_name
@@ -51,7 +51,7 @@ echo "-> Configuring hosts file..."
 echo "127.0.0.1   localhost" > /etc/hosts
 echo "127.0.1.1   $host_name" >> /etc/hosts
 
-echo "=== Setup Some Drivers ==="
+echo "=============== Setup Some Drivers ==============="
 
 echo "-> Installing gpu driver..."
 pacman -S mesa
@@ -74,7 +74,7 @@ echo "-> Installing bluetooth driver..."
 pacman -S bluez bluez-utils
 systemctl enable bluetooth
 
-echo "=== Setup Desktop Enviroment ==="
+echo "=============== Setup Desktop Enviroment ==============="
 echo "-> Install Xorg or Wayland?"
 
 wayland_pkg=""
