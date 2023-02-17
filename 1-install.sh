@@ -44,7 +44,7 @@ echo "-> Configuring sudo for wheel group..."
 sed -i "/wheel\sALL=(ALL:ALL)\sALL/s/^#//g" /etc/sudoers
 sed -i "s/^[ \t]*//" /etc/sudoers
 
-echo "=============== Install Grub ==============="
+echo "=============== Install Boot Loader ==============="
 
 echo "-> Installing boot-manager..."
 echo "Enter yout cpu type: amd or intel ?"
@@ -59,7 +59,11 @@ fi
 
 pacman -S refind
 echo "-> Configuring boot-manager..."
-refind-install
+lsblk
+echo "Enter your efi device name: ie. sda1"
+read efi_part
+refind-install --usedefault /dev/$efi_part --alldrivers
+sed -i '1,2d' /boot/refind_linux.conf
 
 echo "================================"
 echo "Finished, please exit and reboot."

@@ -37,7 +37,7 @@ read void_input
 
 echo "=== Prepare to install linux ==="
 echo "-> Preparing..."
-pacstrap /mnt base linux linux-firmware
+pacstrap /mnt base linux linux-firmware git
 echo "-> Generating file system table..."
 genfstab -U /mnt >> /mnt/etc/fstab
 
