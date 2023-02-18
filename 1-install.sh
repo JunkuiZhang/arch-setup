@@ -8,7 +8,7 @@ echo ""
 
 
 echo "=============== Install Arch Linux ==============="
-reflector --country China --age 24 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
+reflector --country China --sort rate --save /etc/pacman.d/mirrorlist
 echo "-> Installing tools..."
 pacman -S bash-completion vim
 
@@ -64,11 +64,10 @@ pacman -S refind
 echo "-> Configuring boot-manager..."
 refind-install
 lsblk
-echo "Please enter the efi partition: ie. sda1"
-read efi_part
-echo '"Boot with default options"   "root=/dev/$efi_boot rw add_efi_memmap initrd=$cpu_type initrd=initramfs-linux.img"' > /boot/refind_linux.conf
-echo '"Boot with minimal options"   "ro root=/dev/$efi_boot"' >> /boot/refind_linux.conf
+echo "Please enter the root partition: ie. sda2"
+read root_part
+echo "\"Boot with default options\"   \"root=/dev/$root_part rw add_efi_memmap initrd=$cpu_type initrd=initramfs-linux.img\"" > /boot/refind_linux.conf
+echo "\"Boot with minimal options\"   \"ro root=/dev/$efi_boot"\" >> /boot/refind_linux.conf
 
 echo "================================"
 echo "Finished, please exit and reboot."
-echo "Configure /boot/EFI/BOOT/refind.conf"

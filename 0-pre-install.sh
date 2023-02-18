@@ -12,7 +12,7 @@ sleep 5
 
 echo "=============== Configuring pacman mirrorlist ==============="
 
-reflector --country China --age 24 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
+reflector --country China --sort rate --save /etc/pacman.d/mirrorlist
 
 echo "-> Completed..."
 
@@ -37,7 +37,7 @@ read void_input
 
 echo "=== Prepare to install linux ==="
 echo "-> Preparing..."
-pacstrap /mnt base linux linux-firmware git reflector
+pacstrap /mnt base linux linux-firmware git reflector xfsprogs
 echo "-> Generating file system table..."
 genfstab -U /mnt >> /mnt/etc/fstab
 
