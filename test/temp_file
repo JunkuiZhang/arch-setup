@@ -1,2 +1,0 @@
---disable-features=UseChromeOSDirectVideoDecoder --enable-features=VaapiVideoDecoder --ignore-gpu-blocklist --use-gl=desktop
-

@@ -1,13 +1,15 @@
 #!/bin/bash
 
-config_file="variable"
-
-source $config_file
-echo "wayland enable: $wayland_enable"
-
-if [[ $wayland_enable == "true" ]]; then
-	echo "Wayland detected!"
+# echo '"Boot with default options"   "root=/dev/sda1"' > temp.conf
+echo "Input something.."
+read variable
+if [[ ($variable == "y") ]]; then
+	echo "type yes"
+	variable=no
 else
-	echo "Xorg detected!"
+	echo "type no"
+	variable=yes
 fi
+
+echo $variable
 

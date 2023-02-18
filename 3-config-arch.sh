@@ -12,7 +12,7 @@ echo "=============== Setup Softwares =================="
 
 echo "-> Configurig terminal..."
 mkdir -p ~/.config/wezterm
-cp ./wezterm ~/.config/wezterm/
+cp ./wezterm.lua ~/.config/wezterm/wezterm.lua
 
 echo "-> Copying wallpapers into Pictures folder..."
 cp -r ./wallpapers/. ~/Pictures

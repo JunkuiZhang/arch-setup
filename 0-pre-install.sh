@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo ""
-echo "=================================================="
+echo "============================================================="
 echo "================= Stating to install system ================="
-echo "=================================================="
+echo "============================================================="
 echo ""
 echo "Make sure you have connect to the internet and disk partition is completed!"
 echo "No need to monut the disks."

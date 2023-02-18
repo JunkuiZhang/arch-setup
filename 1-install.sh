@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo ""
-echo "================================================"
+echo "========================================================"
 echo "================== Install Arch Linux =================="
-echo "================================================"
+echo "========================================================"
 echo ""
 
 
@@ -53,15 +53,21 @@ read cpu_type
 if [[ ($cpu_type == "amd" || $cpu_type == "AMD") ]]; then
 	echo "AMD detected!"
 	pacman -S amd-ucode
+	cpu_type=amd-ucode.img
 else
 	echo "Intel detected!"
 	pacman -S intel-ucode
+	cpu_type=intel-ucode.img
 fi
 
 pacman -S refind
 echo "-> Configuring boot-manager..."
-refind-install --alldrivers
-# sed -i '1,2d' /boot/refind_linux.conf
+refind-install
+lsblk
+echo "Please enter the efi partition: ie. sda1"
+read efi_part
+echo '"Boot with default options"   "root=/dev/$efi_boot rw add_efi_memmap initrd=$cpu_type initrd=initramfs-linux.img"' > /boot/refind_linux.conf
+echo '"Boot with minimal options"   "ro root=/dev/$efi_boot"' >> /boot/refind_linux.conf
 
 echo "================================"
 echo "Finished, please exit and reboot."
