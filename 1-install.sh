@@ -8,6 +8,7 @@ echo ""
 
 
 echo "=============== Install Arch Linux ==============="
+reflector --country China --age 24 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
 echo "-> Installing tools..."
 pacman -S bash-completion vim
 
@@ -59,11 +60,9 @@ fi
 
 pacman -S refind
 echo "-> Configuring boot-manager..."
-lsblk
-echo "Enter your efi device name: ie. sda1"
-read efi_part
-refind-install --usedefault /dev/$efi_part --alldrivers
-sed -i '1,2d' /boot/refind_linux.conf
+refind-install --alldrivers
+# sed -i '1,2d' /boot/refind_linux.conf
 
 echo "================================"
 echo "Finished, please exit and reboot."
+echo "Configure /boot/EFI/BOOT/refind.conf"

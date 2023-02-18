@@ -14,6 +14,9 @@ echo "-> Configurig terminal..."
 mkdir -p ~/.config/wezterm
 cp ./wezterm ~/.config/wezterm/
 
+echo "-> Copying wallpapers into Pictures folder..."
+cp -r ./wallpapers/. ~/Pictures
+
 echo "-> Installing git..."
 sudo pacman -S git openssh
 echo "Enter your git email address:"
@@ -128,9 +131,6 @@ else
 fi
 
 echo "=============== System Theme ==============="
-
-echo "-> Copying wallpapers into Pictures folder..."
-cp -r ./wallpapers/. ~/Pictures
 
 echo "Input anything to continue..."
 read void_input
